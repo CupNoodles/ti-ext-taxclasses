@@ -1,0 +1,20 @@
+{
+    "code": "cupnoodles.taxclasses",
+    "name": "Tax classes extension",
+    "description": "Allow for different Tax classes per item",
+    "version": "v1.0.0",
+    "author": "CupNoodles",
+    "icon": {
+      "class": "fas fa-percentage",
+      "backgroundColor": "#1B294B",
+      "color": "#fff"
+    },
+    "homepage": "",
+    "require": {
+      "igniter.cart" : "*",
+      "igniter.coupons": "*",
+      "igniter.local": "*",
+      "igniter.user": "*",
+      "igniter.payregister": "*"
+    }
+  }
