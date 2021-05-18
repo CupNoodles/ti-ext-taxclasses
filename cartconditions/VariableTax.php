@@ -33,7 +33,7 @@ class VariableTax extends CartCondition
 
         foreach($cart->content() as $ix=>$menu){
             
-            if($menu->model->tax_class_id){
+            if($menu->model->tax_class_id && isset($menu->model->tax_classes->rate)){
                 $this->taxAmount += $menu->subtotal() * ($menu->model->tax_classes->rate / 100);
             }
             

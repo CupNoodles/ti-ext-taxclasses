@@ -32,7 +32,7 @@ class TaxClasses extends \Admin\Classes\AdminController
         ],
         'edit' => [
             'title' => 'lang:admin::lang.form.edit_title',
-            'redirect' => 'cupnoodles/taxclasses/taxclasses/edit/{uom_id}',
+            'redirect' => 'cupnoodles/taxclasses/taxclasses/edit/{tax_class_id}',
             'redirectClose' => 'cupnoodles/taxclasses/taxclasses',
         ],
         'preview' => [
