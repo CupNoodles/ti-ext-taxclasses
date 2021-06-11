@@ -1,6 +1,6 @@
 {
     "code": "cupnoodles.taxclasses",
-    "name": "Tax classes extension",
+    "name": "Tax Classes",
     "description": "Allow for different Tax classes per item",
     "version": "v1.0.0",
     "author": "CupNoodles",

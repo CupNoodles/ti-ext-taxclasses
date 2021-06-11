@@ -28,7 +28,7 @@ class Extension extends BaseExtension
     public function extensionMeta()
     {
         return [
-            'name'        => 'Tax classes extension',
+            'name'        => 'Tax Classes',
             'author'      => 'CupNoodles',
             'description' => 'Allow for different Tax classes per item',
             'icon'        => 'fas fa-percentage',
