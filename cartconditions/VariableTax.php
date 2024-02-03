@@ -30,10 +30,12 @@ class VariableTax extends CartCondition
         $cart = CartManager::instance()->getCart();
 
         
+        
 
         foreach($cart->content() as $ix=>$menu){
             
             if($menu->model->tax_class_id && isset($menu->model->tax_classes->rate)){
+                
                 $this->taxAmount += $menu->subtotal() * ($menu->model->tax_classes->rate / 100);
             }
             
@@ -42,7 +44,8 @@ class VariableTax extends CartCondition
         $cart_subtotal = $cart->subtotal();
         foreach($tax_rates as $ix=>$tax_rate){
 
-            if($tax_rate->apply_to_delivery){
+            if($tax_rate->apply_to_delivery && Location::orderTypeIsDelivery()){
+
                 $deliveryCharge = Location::coveredArea()->deliveryAmount($cart_subtotal);
                 $this->taxAmount += $deliveryCharge * ($tax_rate->rate / 100);
             }

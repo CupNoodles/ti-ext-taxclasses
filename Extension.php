@@ -115,13 +115,26 @@ class Extension extends BaseExtension
 
     public function registerCartConditions()
     {
+        $cartConditions = [];
+        $taxClasses =  \CupNoodles\TaxClasses\Models\TaxClasses::all();
+        foreach($taxClasses as $taxClass){
+
+        }
+
         return [
-            \CupNoodles\TaxClasses\CartConditions\VariableTax::class => [
+            \CupNoodles\TaxClasses\CartConditions\VariableTax::class  => [
                 'name' => 'variableTax',
                 'label' => 'lang:cupnoodles.taxclasses::default.variable_sales_tax_label',
                 'description' => 'lang:igniter.coupons::default.variable_sales_tax_description',
             ],
+            \CupNoodles\TaxClasses\CartConditions\VariableTax::class => [
+                'name' => 'variableTax1',
+                'label' => 'lang:cupnoodles.taxclasses::default.variable_sales_tax_label',
+                'description' => 'lang:igniter.coupons::default.variable_sales_tax_description',
+            ],
         ];
+
+        return $cartConditions;
     }
 
 

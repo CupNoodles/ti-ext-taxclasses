@@ -87,7 +87,23 @@ $config['form']['tabs'] = [
         'apply_to_delivery' => [
             'label' => 'lang:cupnoodles.taxclasses::default.apply_to_delivery',
             'type' => 'switch'
-        ]
+        ],
+        'include_in_price' => [
+            'label' => 'lang:cupnoodles.taxclasses::default.include_in_price',
+            'type' => 'switch'
+        ],
+        'limit_to_order_type' => [
+            'label' => 'lang:cupnoodles.taxclasses::default.limit_to_order_type',
+            'type' => 'checkboxtoggle',
+            'options' => ['Admin\Models\Locations_model', 'getOrderTypeOptions'],
+        ],
+        'apply_to_previous_fees' => [
+            'label' => 'lang:cupnoodles.taxclasses::default.apply_to_previous_fees',
+            'type' => 'switch',
+
+        ],
+
+        
     ],
 ];
 

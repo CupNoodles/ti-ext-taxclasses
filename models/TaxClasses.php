@@ -21,6 +21,11 @@ class TaxClasses extends Model
 
     public $relation = [];
 
+
+    protected $casts = [
+        'limit_to_order_type' => 'array'
+    ];
+
     public static function getDropdownOptions()
     {
         return static::allClasses()->dropdown('name');

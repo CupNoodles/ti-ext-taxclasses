@@ -34,9 +34,11 @@ class AddTaxClasses extends Migration
 
     public function down()
     {
-        Schema::table('menus', function (Blueprint $table) {
-            $table->dropColumn(['tax_class_id', 'uom_id']);
-        });
+        if (!Schema::hasColumn('menus', 'tax_class_id')) {
+            Schema::table('menus', function (Blueprint $table) {
+                $table->dropColumn(['tax_class_id']);
+            });
+        }
         Schema::dropIfExists('tax_classes');
 
     }
