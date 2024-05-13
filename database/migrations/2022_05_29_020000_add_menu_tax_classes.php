@@ -23,17 +23,28 @@ class AddMenuTaxClasses extends Migration
             });
         }
 
-        /*
-        * TODO: Hang on this is destructive - we should at least put in a migration here for the belongsTos get migrated over
-        */
         // menus.tax_class_is is the old way (can't support many-to-many)
-        /* 
         if (Schema::hasColumn('menus', 'tax_class_id')) {
+            $this->migrate_tax_classes();
             Schema::table('menus', function (Blueprint $table) {
+                
                 $table->dropColumn('tax_class_id');
             });
         }
-        */
+        
+    }
+
+    public function migrate_tax_classes(){
+
+        $previous_tax_classes = DB::table('menus')->select('menu_id', 'tax_class_id')->where('tax_class_id', '!=', 0)->get();
+        foreach($previous_tax_classes as $row){
+            DB::table('menu_tax_classes')->insert(
+                [
+                    'menu_id' => $row->menu_id,
+                    'tax_class_id' => $row->tax_class_id
+                ]
+            );
+        }
 
     }
 

@@ -117,18 +117,18 @@ class Extension extends BaseExtension
 
         $tax_classes = [];
         foreach($taxClasses as $taxClass){
-            if(!$taxClass->include_in_price){
-                // leaving a documentation link here since class_alias() is not a very well-known PHP function
-                // https://www.php.net/manual/en/function.class-alias.php
-                $dynamic_class_name = \CupNoodles\TaxClasses\CartConditions\VariableTax::class . '_' . $taxClass->tax_class_id;
-                class_alias(\CupNoodles\TaxClasses\CartConditions\VariableTax::class, $dynamic_class_name);
-                $tax_classes[$dynamic_class_name] = [
-                    'name' => $taxClass->name,
-                    'label' => $taxClass->label,
-                    'description' => $taxClass->description,
-                    'tax_class_id' => $taxClass->tax_class_id
-                ];
-            }
+            // leaving a documentation link here since class_alias() is not a very well-known PHP function
+            // https://www.php.net/manual/en/function.class-alias.php
+            $dynamic_class_name = \CupNoodles\TaxClasses\CartConditions\VariableTax::class . '_' . $taxClass->tax_class_id;
+            class_alias(\CupNoodles\TaxClasses\CartConditions\VariableTax::class, $dynamic_class_name);
+            $tax_classes[$dynamic_class_name] = [
+                'name' => $taxClass->name,
+                'label' => $taxClass->label,
+                'description' => $taxClass->description,
+                'tax_class_id' => $taxClass->tax_class_id,
+                'include_in_price' => $taxClass->include_in_price,
+                'limit_to_order_type' => $taxClass->limit_to_order_type
+            ];
         }
 
         return $tax_classes;

@@ -98,13 +98,6 @@ $config['form']['tabs'] = [
             'type' => 'number',
             'span' => 'right',
         ],
-        /* TODO
-        is this needed anymore? I think it's superceded by apply-to_previous_fees
-        */
-        'apply_to_delivery' => [
-            'label' => 'lang:cupnoodles.taxclasses::default.apply_to_delivery',
-            'type' => 'switch'
-        ],
         'include_in_price' => [
             'label' => 'lang:cupnoodles.taxclasses::default.include_in_price',
             'comment' => 'lang:cupnoodles.taxclasses::default.include_in_price_description',
