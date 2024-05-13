@@ -76,20 +76,38 @@ $config['form']['tabs'] = [
     'fields' => [
         'name' => [
             'label' => 'lang:cupnoodles.taxclasses::default.name',
+            'comment' => 'lang:cupnoodles.taxclasses::default.name_description',
+            'type' => 'text',
+            'span' => 'left',
+        ],
+        'label' => [
+            'label' => 'lang:cupnoodles.taxclasses::default.label',
+            'comment' => 'lang:cupnoodles.taxclasses::default.label_description', 
+            'type' => 'text',
+            'span' => 'left',
+        ],
+        'description' => [
+            'label' => 'lang:cupnoodles.taxclasses::default.description',
+            'comment' => 'lang:cupnoodles.taxclasses::default.description_description',
             'type' => 'text',
             'span' => 'left',
         ],
         'rate' => [
             'label' => 'lang:cupnoodles.taxclasses::default.rate',
+            'comment' => 'lang:cupnoodles.taxclasses::default.rate_description',
             'type' => 'number',
             'span' => 'right',
         ],
+        /* TODO
+        is this needed anymore? I think it's superceded by apply-to_previous_fees
+        */
         'apply_to_delivery' => [
             'label' => 'lang:cupnoodles.taxclasses::default.apply_to_delivery',
             'type' => 'switch'
         ],
         'include_in_price' => [
             'label' => 'lang:cupnoodles.taxclasses::default.include_in_price',
+            'comment' => 'lang:cupnoodles.taxclasses::default.include_in_price_description',
             'type' => 'switch'
         ],
         'limit_to_order_type' => [
@@ -99,8 +117,8 @@ $config['form']['tabs'] = [
         ],
         'apply_to_previous_fees' => [
             'label' => 'lang:cupnoodles.taxclasses::default.apply_to_previous_fees',
+            'comment' => 'lang:cupnoodles.taxclasses::default.apply_to_previous_fees_description',
             'type' => 'switch',
-
         ],
 
         

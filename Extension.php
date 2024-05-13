@@ -54,27 +54,24 @@ class Extension extends BaseExtension
     public function boot()
     {
         Menus_Model::extend(function ($model) {
-            $model->relation['belongsTo']['tax_classes'] = ['CupNoodles\TaxClasses\Models\TaxClasses', 'foreignKey' => 'tax_class_id'];
-            
+            $model->relation['belongsToMany']['tax_classes'] = ['CupNoodles\TaxClasses\Models\TaxClasses', 'table' => 'menu_tax_classes'];            
         });
 
         Event::listen('admin.form.extendFieldsBefore', function (Form $form) {
 
             if($form->model instanceof Menus_model){
                 
-                $tax_class_id = ['tax_class_id' => [
+                $tax_classes = ['tax_classes' => [
                     'label' => 'lang:cupnoodles.taxclasses::default.label_tax_classes',
                     'type' => 'relation',
-                    'span' => 'right',
-                    'relationFrom' => 'tax_classes',
-                    'nameFrom' => 'name',
-                    'valueFrom' => 'tax_class_id',
-
+                    'span' => 'right'
                 ]];
-                $form->tabs['fields'] = $this->array_insert_after($form->tabs['fields'], 'menu_priority', $tax_class_id);
+
+                $form->tabs['fields'] = $this->array_insert_after($form->tabs['fields'], 'menu_priority', $tax_classes);
             }
 
         });
+
 
     }
 
@@ -117,24 +114,24 @@ class Extension extends BaseExtension
     {
         $cartConditions = [];
         $taxClasses =  \CupNoodles\TaxClasses\Models\TaxClasses::all();
-        foreach($taxClasses as $taxClass){
 
+        $tax_classes = [];
+        foreach($taxClasses as $taxClass){
+            if(!$taxClass->include_in_price){
+                // leaving a documentation link here since class_alias() is not a very well-known PHP function
+                // https://www.php.net/manual/en/function.class-alias.php
+                $dynamic_class_name = \CupNoodles\TaxClasses\CartConditions\VariableTax::class . '_' . $taxClass->tax_class_id;
+                class_alias(\CupNoodles\TaxClasses\CartConditions\VariableTax::class, $dynamic_class_name);
+                $tax_classes[$dynamic_class_name] = [
+                    'name' => $taxClass->name,
+                    'label' => $taxClass->label,
+                    'description' => $taxClass->description,
+                    'tax_class_id' => $taxClass->tax_class_id
+                ];
+            }
         }
 
-        return [
-            \CupNoodles\TaxClasses\CartConditions\VariableTax::class  => [
-                'name' => 'variableTax',
-                'label' => 'lang:cupnoodles.taxclasses::default.variable_sales_tax_label',
-                'description' => 'lang:igniter.coupons::default.variable_sales_tax_description',
-            ],
-            \CupNoodles\TaxClasses\CartConditions\VariableTax::class => [
-                'name' => 'variableTax1',
-                'label' => 'lang:cupnoodles.taxclasses::default.variable_sales_tax_label',
-                'description' => 'lang:igniter.coupons::default.variable_sales_tax_description',
-            ],
-        ];
-
-        return $cartConditions;
+        return $tax_classes;
     }
 
 

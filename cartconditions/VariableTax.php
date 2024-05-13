@@ -17,39 +17,37 @@ class VariableTax extends CartCondition
 
     protected $taxAmount;
 
-    public function getLabel()
+    protected $tax_class_id;
+
+    public function __construct($config = [])
     {
-        return 'Tax';
+        parent::__construct();
+        $this->tax_class_id = $config['tax_class_id'];
+        $this->name = 'VariableTax_' . $config['tax_class_id'];
+        $this->label = $config['label'];
     }
+
+    public function getLabel(){
+        return $this->label;
+    }
+
 
     public function getActions()
     {
         $this->taxAmount = 0;
 
-        $tax_rates = TaxClasses::all();
+        $tax_class = TaxClasses::where('tax_class_id', $this->tax_class_id)->first();
+
         $cart = CartManager::instance()->getCart();
 
-        
-        
-
         foreach($cart->content() as $ix=>$menu){
-            
-            if($menu->model->tax_class_id && isset($menu->model->tax_classes->rate)){
-                
-                $this->taxAmount += $menu->subtotal() * ($menu->model->tax_classes->rate / 100);
+
+            $has_class = $menu->model::has('tax_classes', $this->tax_class_id)->count();
+
+            if($has_class){
+                $this->taxAmount += $menu->subtotal() * ($tax_class->rate / 100);
             }
             
-        }
-
-        $cart_subtotal = $cart->subtotal();
-        foreach($tax_rates as $ix=>$tax_rate){
-
-            if($tax_rate->apply_to_delivery && Location::orderTypeIsDelivery()){
-
-                $deliveryCharge = Location::coveredArea()->deliveryAmount($cart_subtotal);
-                $this->taxAmount += $deliveryCharge * ($tax_rate->rate / 100);
-            }
-
         }
 
         return [
