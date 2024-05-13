@@ -12,8 +12,10 @@ By default, the extension does not create any new tax classes. Navigate to `/adm
 
 Delivery fees will be taxed at the cumulative rate for all tax classes marked as 'Apply to Delivery'. 
 
-You'll then need to navigate to your respective menu items and modify tax classes as needed. 
+You'll then need to navigate to your respective menu items and modify tax classes as needed. Each menu item can be included in multiple tax classes. 
 
 Note that the store-wide tax rate isn't disabled by this extention, and can remain in use if needed. If not, disable the 'tax' cart condition `admin/extensions/edit/igniter/cart/settings`.
+
+
 
 

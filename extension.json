@@ -2,7 +2,7 @@
     "code": "cupnoodles.taxclasses",
     "name": "Tax Classes",
     "description": "Allow for different Tax classes per item",
-    "version": "v1.0.0",
+    "version": "v2.0.0",
     "author": "CupNoodles",
     "icon": {
       "class": "fas fa-percentage",

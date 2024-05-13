@@ -16,7 +16,7 @@ return [
     'apply_to_delivery' => 'Apply To Delivery',
     'limit_to_order_type' => 'Limit to Order Type',
     'include_in_price' => 'Include Tax in Menu Price',
-    'include_in_price_description' => 'If included in price, this tax will NOT appear in Cart conditions or as a line in order totals.',
+    'include_in_price_description' => 'If included in price, this tax will appear as a cart condition at checkout but will NOT be added to the order total. Do not set "Apply to prevoius" if this value is set.',
     'apply_to_previous_fees' => 'Apply to prevoius Cart Conditions',
     'apply_to_previous_fees_description' => 'If checked, this percentage will be applied to all lines that show up above it in System => Settings => Cart Settings => Cart Conditions',
     'text_title' => 'Tax Classes',

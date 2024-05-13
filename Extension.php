@@ -32,7 +32,7 @@ class Extension extends BaseExtension
             'author'      => 'CupNoodles',
             'description' => 'Allow for different Tax classes per item',
             'icon'        => 'fas fa-percentage',
-            'version'     => '1.0.0'
+            'version'     => '2.0.0'
         ];
     }
 
