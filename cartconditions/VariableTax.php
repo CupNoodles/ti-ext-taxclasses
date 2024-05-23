@@ -61,7 +61,9 @@ class VariableTax extends CartCondition
         }
 
 
-
+        if ($this->include_in_price) { 
+            $tax_class->rate /= (100 + $tax_class->rate) / 100; 
+        }
 
 
         foreach($cart->content() as $ix=>$menu){
