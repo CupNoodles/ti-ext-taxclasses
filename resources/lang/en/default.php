@@ -1,0 +1,40 @@
+<?php
+
+return [
+    'side_menu' => 'Tax Classes',
+    'text_title' => 'Tax Classes',
+    'text_form_name' => 'Tax Class',
+    'text_empty' => 'No tax classes yet.',
+    'text_filter_search' => 'Search names and labels',
+    'text_included' => '%s (included)',
+    'permission_manage' => 'Manage tax classes',
+    'button_cart_conditions' => 'Cart Conditions',
+    'alert_delete_confirm' => 'Delete this tax class? It will be removed from every menu item and category, and no longer charged.',
+    'error_rate_format' => 'Enter the rate as a percentage with up to 4 decimal places, eg. 8.875.',
+
+    'column_included' => 'Included in price',
+    'column_menus' => 'Menu items',
+    'column_categories' => 'Categories',
+
+    'name' => 'Name',
+    'help_name' => 'For staff, eg. "NYC Sales Tax".',
+    'rate' => 'Rate (%)',
+    'help_rate' => 'A percentage: 8.875 for 8.875%, not 0.08875.',
+    'label' => 'Label',
+    'help_label' => 'The line customers see in the order totals. Leave blank to use the name and rate, eg. "NYC Sales Tax 8.875%".',
+    'description' => 'Description',
+    'help_description' => 'Optional. Only shown if your theme displays it.',
+    'include_in_price' => 'Included in menu prices',
+    'help_include_in_price' => 'For VAT-style pricing: menu prices already include this tax. It\'s shown on the order but not added to the total.',
+    'limit_to_order_type' => 'Only for these order types',
+    'help_limit_to_order_type' => 'Leave all unselected to charge it on every order type.',
+    'tax_delivery' => 'Also tax the delivery charge',
+    'tax_payment_fee' => 'Also tax payment fees',
+
+    'label_tax_classes' => 'Tax classes',
+    'help_menu_tax_classes' => 'Leave all unticked to use the tax classes of this item\'s categories.',
+    'help_menu_category_classes' => 'Its categories have: %s.',
+    'help_menu_no_category_classes' => 'Its categories have none, so it\'s currently not taxed.',
+    'help_category_tax_classes' => 'Charged on items in this category, unless an item has tax classes of its own.',
+    'help_condition' => 'Tax class "%s". Keep it below Delivery, Coupon and Payment Fee.',
+];

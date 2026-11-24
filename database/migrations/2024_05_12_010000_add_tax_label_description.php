@@ -1,50 +1,34 @@
 <?php
 
-namespace CupNoodles\TaxClasses\Database\Migrations;
+declare(strict_types=1);
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
-use Schema;
+use Illuminate\Support\Facades\Schema;
 
-/**
- * 
- */
-class AddTaxLabelDescription extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        if (Schema::hasTable('tax_classes')) {
-            if (!Schema::hasColumn('tax_classes', 'label')) {
-                Schema::table('tax_classes', function (Blueprint $table) {
-                    $table->text('label');
-                });
-            }
-
-            if (!Schema::hasColumn('tax_classes', 'description')) {
-                Schema::table('tax_classes', function (Blueprint $table) {
-                    $table->text('description');
-                });
-            }
-
+        if (Schema::hasTable('tax_classes') && !Schema::hasColumn('tax_classes', 'label')) {
+            Schema::table('tax_classes', function(Blueprint $table): void {
+                $table->text('label')->nullable();
+            });
         }
 
-    }
-
-    public function down()
-    {
-        if (Schema::hasTable('tax_classes')) {
-            Schema::table('tax_classes', function (Blueprint $table) {
-                if (Schema::hasColumn('tax_classes', 'label')) {
-                    $table->dropColumn( 'label' );
-                }
-                if (Schema::hasColumn('tax_classes', 'description')) {
-                    $table->dropColumn( 'description' );
-                }
+        if (Schema::hasTable('tax_classes') && !Schema::hasColumn('tax_classes', 'description')) {
+            Schema::table('tax_classes', function(Blueprint $table): void {
+                $table->text('description')->nullable();
             });
-        };
-
-
+        }
     }
 
-}
+    public function down(): void
+    {
+        if (Schema::hasColumn('tax_classes', 'label')) {
+            Schema::table('tax_classes', function(Blueprint $table): void {
+                $table->dropColumn(['label', 'description']);
+            });
+        }
+    }
+};

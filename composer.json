@@ -1,0 +1,62 @@
+{
+    "name": "cupnoodles/ti-ext-taxclasses",
+    "type": "tastyigniter-package",
+    "license": "MIT",
+    "description": "Tax classes for TastyIgniter: several tax rates per menu item and category, decimal rates, inclusive or added on top, delivery and payment fee tax, per order type.",
+    "authors": [
+        {
+            "name": "CupNoodles"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "tastyigniter/core": "^v4.5",
+        "tastyigniter/ti-ext-cart": "^v4.5",
+        "tastyigniter/ti-ext-local": "^v4.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.2",
+        "pestphp/pest-plugin-laravel": "^4.0",
+        "sampoyigi/testbench": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "CupNoodles\\TaxClasses\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CupNoodles\\TaxClasses\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "tastyigniter-extension": {
+            "code": "cupnoodles.taxclasses",
+            "name": "Tax Classes",
+            "icon": {
+                "class": "fa fa-percent",
+                "color": "#FFFFFF",
+                "backgroundColor": "#1B294B"
+            },
+            "homepage": "https://github.com/CupNoodles/ti-ext-taxclasses"
+        },
+        "branch-alias": {
+            "dev-master": "4.0.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true,
+            "composer/installers": true
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "test:lint": "vendor/bin/pint --test --ansi",
+        "test:lint-fix": "vendor/bin/pint --ansi",
+        "test:pest": "vendor/bin/pest"
+    }
+}
